@@ -8,6 +8,14 @@ from typing import Dict
 
 from tests.consts import PROJECT_DIR
 
+def initialize_git_repo(repo_dir: Path):
+    # git init
+    subprocess.run(["git", "init"], cwd=repo_dir, check=True)
+    # commit the contents to the 'main' branch
+    subprocess.run(["git", "branch", "-M", "main"], cwd=repo_dir, check=True)
+    subprocess.run(["git", "add", "--all"], cwd=repo_dir, check=True)
+    subprocess.run(["git", "commit", "-m", "'feat: initial commit by pytest'"], cwd=repo_dir, check=True)
+
 def generate_project(template_values: Dict[str, str]):
     template_values: Dict[str, str] = deepcopy(template_values)
     cookiecutter_config = {"default_context": template_values}

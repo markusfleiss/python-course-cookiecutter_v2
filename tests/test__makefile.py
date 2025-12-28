@@ -1,14 +1,9 @@
 import pytest
+import subprocess
+from pathlib import Path
 
-@pytest.fixture(scope="session")
-def project():
-    print("Setup")
-    yield 1
-    print("Teardown")
-
-def test__linting_passes(project):
-    print(project)
-    assert False
+def test__linting_passes(project_dir: Path):
+    subprocess.run(["make", "lint-ci"], cwd=project_dir, check=True)
 
 def fest__tests_pass():
     ...

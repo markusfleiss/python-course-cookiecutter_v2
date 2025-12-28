@@ -17,6 +17,10 @@ install:
 lint:
 	bash run.sh lint
 
+# 1. generate a project
+# 2. execute make lint 
+
+
 lint-ci:
 	bash run.sh lint:ci
 
